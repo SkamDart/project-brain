@@ -3,6 +3,7 @@
 
 # venv
 .Python
+*.pyc
 [Bb]in
 [Ii]nclude
 [Ll]ib
