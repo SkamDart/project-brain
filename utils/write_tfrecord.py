@@ -42,7 +42,7 @@ def writeToFile(filename_pairs, tfrecords_filename):
 
 def testFunction():
     # Get some image/annotation pairs for example 
-    filename_pairs = [('../small_testdata/cat.jpg','../small_testdata/cat_annotation.png')]
+    filename_pairs = [('../small_TestData/cat.jpg','../small_TestData/cat_annotation.png')]
     # Important: We are using PIL to read .png files later.
     # This was done on purpose to read indexed png files
     # in a special way -- only indexes and not map the indexes

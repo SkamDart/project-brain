@@ -49,9 +49,9 @@ def testBinary():
 
 def testDisplayImage():
     """ Function to test display image from .nii files. """
-    epi_img = nib.load('BrainHack-selected/LS600'+str(2)+'_T1_std.nii.gz')
+    epi_img = nib.load('../small_TestData/BrainHack-selected/LS600'+str(2)+'_T1_std.nii.gz')
     epi_img_data = epi_img.get_data()
-    epi_img1 = nib.load('BrainHack-selected/LS400'+str(5)+'_T1_std.nii.gz')
+    epi_img1 = nib.load('../small_TestData/BrainHack-selected/LS400'+str(5)+'_T1_std.nii.gz')
     epi_img_data1 = epi_img1.get_data()
     slice_2 = epi_img_data[73:106, 93:126, 95]
     slice_5 = epi_img_data1[73:106, 93:126, 95]
