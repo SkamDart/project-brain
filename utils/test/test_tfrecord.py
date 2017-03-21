@@ -7,16 +7,16 @@ from ..processtools import read_tfrecord, write_tfrecord
 """ Test for tfrecord write and read.
     Usage: specify a main function here, and run 'python -m utils.test.test_tfrecord' at root folder"""
 
-def testWrite():
+def test_write(img, img_annotation, output_dir):
     # Get some image/annotation pairs for example 
-    filename_pairs = [('small_TestData/cat.jpg','small_TestData/cat_annotation.png')]
+    filename_pairs = [(img,img_annotation)]
     # Important: We are using PIL to read .png files later.
     # This was done on purpose to read indexed png files
     # in a special way -- only indexes and not map the indexes
     # to actual rgb values. This is specific to PASCAL VOC
     # dataset data. If you don't want thit type of behaviour
     # consider using skimage.io.imread()
-    tfrecords_filename = 'pascal_voc_segmentation.tfrecords'
+    tfrecords_filename = output_dir
 
     """generate output file is done here, following codes just check if we can
        retrive original image from our TfRecord file"""
@@ -75,8 +75,8 @@ def testWrite():
         print(np.allclose(*annotation_pair_to_compare))
 
 
-def testReadAndDisplay():
-    tfrecords_filename = 'pascal_voc_segmentation.tfrecords'
+def test_readAndDisplay(data_dir):
+    tfrecords_filename = data_dir
     # Even when reading in multiple threads, share the filename queue.
     image, annotation = read_tfrecord.read_and_decode(tfrecords_filename)
     # The op for initializing the variables.
