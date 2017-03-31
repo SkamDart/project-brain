@@ -64,3 +64,37 @@ def read_and_decode(tfrecords_filename):
                                                  min_after_dequeue=10)
     
     return images, annotations
+
+def test_display_image_batch():
+    tfrecords_filename = 'pascal_voc_segmentation.tfrecords'
+    # Even when reading in multiple threads, share the filename queue.
+    image, annotation = read_and_decode(tfrecords_filename)
+    # The op for initializing the variables.
+    init_op = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer())
+
+    with tf.Session()  as sess:
+        sess.run(init_op)
+        coord = tf.train.Coordinator()
+        threads = tf.train.start_queue_runners(coord=coord)
+        # Let's read off 3 batches just for example
+        for i in xrange(1):
+            img, anno = sess.run([image, annotation])
+            print(img[0, :, :, :].shape)
+            print('current batch')
+            # We selected the batch size of two
+            # So we should get two image pairs in each batch
+            # Let's make sure it is random
+            io.imshow(img[0, :, :, :])
+            io.show()
+
+            io.imshow(anno[0, :, :, 0])
+            io.show()
+            
+            io.imshow(img[1, :, :, :])
+            io.show()
+
+            io.imshow(anno[1, :, :, 0])
+            io.show()
+
+        coord.request_stop()
+        coord.join(threads)

@@ -30,3 +30,4 @@ def show_slices(slices):
         axes[i].imshow(slice.T, cmap="gray", origin="lower")
     plt.suptitle("Center slices for EPI image")
     plt.show()
+
