@@ -75,7 +75,8 @@ loss_tf += weight_decay
 
 sess_config = tf.ConfigProto()
 sess_config.gpu_options.allow_growth = True
-sess_config.gpu_options.per_process_gpu_memory_fraction = MAX_FRACTION
+sess_config.gpu_options.per_process_gpu_memory_fraction = .9
+sess_config.intra_op_paralellism_threads = 2
 
 sess = tf.InteractiveSession(config = sess_config)
 saver = tf.train.Saver( max_to_keep=50 )
