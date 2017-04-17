@@ -7,8 +7,8 @@ from util import load_image
 import os
 
 
-weight_path = '../data/caffe_layers_value.pickle'
-model_path = '../models/caltech256/'
+weight_path = '/data/junjiew2/neuro-prog/data/caffe_layers_value.pickle'
+model_path = '/data/junjiew2/neuro-prog/models/'
 pretrained_model_path = None #'../models/caltech256/model-0'
 n_epochs = 10000
 init_learning_rate = 0.01
@@ -17,12 +17,12 @@ momentum = 0.9
 batch_size = 53
 
 
-caltech_path = '../data/caltech'
-trainset_path = '../data/caltech/train.pickle'
-testset_path = '../data/caltech/test.pickle'
-label_dict_path = '../data/caltech/label_dict.pickle'
+caltech_path = '/data/junjiew2/neuro-prog/data/caltech'
+trainset_path = '/data/junjiew2/neuro-prog/data/caltech/train.pickle'
+testset_path = '/data/junjiew2/neuro-prog/data/caltech/test.pickle'
+label_dict_path = '/data/junjiew2/neuro-prog/data/caltech/label_dict.pickle'
 
-filepaths = {0: '../data/2BK-0BK_30-36-30.npz', 1: '../data/REL-MATCH_30-36-30.npz'}
+filepaths = {0: '/data/junjiew2/neuro-prog/data/2BK-0BK_30-36-30.npz', 1: '/data/junjiew2/neuro-prog/data/REL-MATCH_30-36-30.npz'}
 
 if not os.path.exists( trainset_path ):
     if not os.path.exists( caltech_path ):
@@ -76,7 +76,7 @@ loss_tf += weight_decay
 sess_config = tf.ConfigProto()
 sess_config.gpu_options.allow_growth = True
 sess_config.gpu_options.per_process_gpu_memory_fraction = .9
-sess_config.intra_op_paralellism_threads = 2
+sess_config.intra_op_parallelism_threads = 2
 
 sess = tf.InteractiveSession(config = sess_config)
 saver = tf.train.Saver( max_to_keep=50 )
